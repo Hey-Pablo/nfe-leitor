@@ -1,0 +1,24 @@
+{
+  "name": "nfe-leitor",
+  "version": "1.0.0",
+  "description": "> **Status: em desenvolvimento.** O código entra aos poucos; abaixo está o planejamento do projeto.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hey-Pablo/nfe-leitor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Hey-Pablo/nfe-leitor/issues"
+  },
+  "homepage": "https://github.com/Hey-Pablo/nfe-leitor#readme",
+  "devDependencies": {
+    "@xmldom/xmldom": "^0.9.12"
+  }
+}
