@@ -1,7 +1,7 @@
 {
   "name": "nfe-leitor",
   "version": "1.0.0",
-  "description": "> **Status: em desenvolvimento.** O código entra aos poucos; abaixo está o planejamento do projeto.",
+  "description": "Leitor e validador de NF-e (modelo 55) no navegador: chave de acesso, CNPJ e somas.",
   "main": "index.js",
   "scripts": {
     "test": "node --test"
