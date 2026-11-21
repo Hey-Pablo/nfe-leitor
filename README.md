@@ -1,59 +1,41 @@
 # Leitor e Validador de NF-e
 
-> **Status: em desenvolvimento.** O código entra aos poucos; abaixo está o planejamento do projeto.
+> **Status: em desenvolvimento.** O núcleo de leitura e validação está disponível; a interface e a publicação ainda serão implementadas.
 
-## O que é
+## Problema e solução
 
-Página que recebe o XML de uma NF-e (modelo 55) e mostra emitente, destinatário, itens, impostos e totais em formato legível. Valida a chave de acesso e aponta divergências entre itens e totais. Tudo roda no navegador: nenhum arquivo sai da máquina do usuário.
+XMLs de NF-e são difíceis de conferir manualmente. O projeto transforma os dados da nota em objetos e verifica chave de acesso, CNPJ e soma dos produtos. A interface planejada executará a leitura no navegador, sem enviar arquivos a um servidor. Os exemplos são fictícios e não representam notas fiscais reais.
 
-## O que prova
+## Como executar os testes
 
-JavaScript sem framework (File API, DOMParser, manipulação do DOM), implementação de algoritmo (dígito verificador) e domínio fiscal.
+Requisitos: Node.js e npm. Na raiz do projeto:
 
-## Stack
+```sh
+npm ci
+npm test
+```
 
-HTML5, CSS3 e JavaScript com módulos ES. Testes com o executor nativo do Node (`node --test`). Publicação no GitHub Pages.
+Para recriar os três exemplos fictícios e calcular seus dígitos verificadores:
+
+```sh
+node tools/gerar-exemplos.js
+```
+
+O núcleo usa módulos ES e `DOMParser` do navegador. Nos testes, `@xmldom/xmldom` fornece o parser por injeção; não é dependência de execução no navegador.
 
 ## Estrutura
 
-```
-nfe-leitor/
-├─ index.html
-├─ css/estilo.css
-├─ js/
-│  ├─ main.js        # upload, arrastar e soltar, orquestração
-│  ├─ parser.js      # XML → objeto (ide, emit, dest, itens, totais, protocolo)
-│  ├─ validador.js   # chave de acesso, CNPJ, somas
-│  └─ render.js      # monta cabeçalho, tabelas e alertas
-├─ exemplos/         # XMLs fictícios: válido, total divergente, chave inválida
-├─ tests/validador.test.js
-└─ README.md
-```
+- `js/parser.js`: leitura XML e extração de dados, com erros tipados e aviso de protocolo ausente.
+- `js/validador.js`: funções puras para chave, CNPJ, soma em centavos e contagem opcional de itens.
+- `exemplos/`: notas fictícias válida, com total divergente e com chave inválida.
+- `tools/gerar-exemplos.js`: gera os exemplos e seus dígitos verificadores.
+- `tests/`: testes com o executor nativo do Node.
 
-## Plano
+## Decisões e limitações
 
-1. Crie o repositório e três XMLs fictícios seguindo o leiaute público da NF-e (grupo `infNFe` com `ide`, `emit`, `dest`, `det` e `total`).
-2. Leitura do arquivo com `input type="file"`, área de arrastar e soltar e `FileReader`.
-3. Parser com `DOMParser` no modo `application/xml`. Use `getElementsByTagName`, que encontra as tags mesmo com o namespace padrão do XML da NF-e.
-4. Validador da chave (44 dígitos, no atributo `Id` de `infNFe`, depois do prefixo `NFe`): módulo 11 com pesos de 2 a 9 da direita para a esquerda. Resto 0 ou 1 gera dígito 0; nos demais casos, o dígito é 11 menos o resto.
-5. Validações de consistência: soma de `vProd` dos itens igual a `ICMSTot/vProd`, contagem de itens e CNPJ do emitente com dígitos válidos.
-6. Testes do validador com casos certos e errados.
-7. Renderização: cabeçalho da nota, partes, tabela de itens (código, descrição, NCM, CFOP, quantidade, valor), totais e impostos.
-8. Estados de erro: arquivo que não é XML, XML que não é NF-e, nota sem protocolo.
-9. Responsividade, contraste e navegação por teclado.
-10. Publicação no GitHub Pages e README com GIF.
+O parser retorna valores do XML como strings, preservando a representação original. A validação de soma compara valores arredondados para centavos; a contagem compara o número de itens com um valor informado pelo chamador, quando disponível. Erros de XML e de documento sem `infNFe` têm códigos distintos; ausência de protocolo é aviso. O núcleo não valida assinatura digital, esquema XSD, autorização fiscal nem todos os campos ou regras tributárias. CNPJs com dígitos válidos não comprovam existência ou situação cadastral. Os exemplos ilustram os grupos usados pelo núcleo e não são documentos aptos à transmissão fiscal.
 
-## Como deve funcionar
-
-- O usuário arrasta um XML e vê a nota organizada em menos de 1 segundo.
-- Um selo indica chave válida ou inválida, e um botão copia a chave.
-- Divergências aparecem em lista de alertas com o valor esperado e o encontrado.
-- Arquivo inválido gera mensagem clara, sem travar a página.
-- Nenhuma requisição de rede leva o conteúdo do arquivo.
-
-## Prazo
-
-3 a 4 dias.
+A interface, acessibilidade, demonstração e publicação no GitHub Pages são próximos passos. O desenvolvimento usa IA como apoio à programação e revisão; o código e os testes devem ser compreendidos e revisados pelo autor.
 
 ## Autor
 

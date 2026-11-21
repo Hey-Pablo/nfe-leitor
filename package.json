@@ -1,0 +1,24 @@
+{
+  "name": "nfe-leitor",
+  "version": "1.0.0",
+  "description": "Leitor e validador de NF-e (modelo 55) no navegador: chave de acesso, CNPJ e somas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hey-Pablo/nfe-leitor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Hey-Pablo/nfe-leitor/issues"
+  },
+  "homepage": "https://github.com/Hey-Pablo/nfe-leitor#readme",
+  "devDependencies": {
+    "@xmldom/xmldom": "^0.9.12"
+  }
+}
