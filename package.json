@@ -4,7 +4,8 @@
   "description": "Leitor e validador de NF-e (modelo 55) no navegador: chave de acesso, CNPJ e somas.",
   "main": "index.js",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "test:e2e": "playwright test"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/Hey-Pablo/nfe-leitor#readme",
   "devDependencies": {
+    "@playwright/test": "^1.45.0",
     "@xmldom/xmldom": "^0.9.12"
   }
 }
