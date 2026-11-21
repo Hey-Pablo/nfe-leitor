@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leitor e Validador de NF-e</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Leitor e Validador de NF-e</h1>
+      <p class="subtitle">Arraste um arquivo XML de NF-e aqui ou clique para selecionar</p>
+    </header>
+
+    <section class="upload-area" id="uploadArea" aria-label="Área de upload de arquivo XML">
+      <input type="file" id="fileInput" accept=".xml" hidden aria-label="Selecionar arquivo XML de NF-e">
+      <div class="upload-content">
+        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <p>Arraste o arquivo XML para cá ou <button type="button" id="selectFileBtn" class="link-btn">clique para selecionar</button></p>
+        <p class="hint">Apenas arquivos .xml • Processamento local no navegador</p>
+      </div>
+    </section>
+
+    <section class="results" id="results" hidden aria-live="polite">
+      <div class="result-header">
+        <h2>Dados da Nota Fiscal</h2>
+        <div class="chave-badge" id="chaveBadge" aria-live="polite">
+          <span class="badge-label">Chave de acesso:</span>
+          <span class="badge-value" id="chaveValor">—</span>
+          <button type="button" id="copyChaveBtn" class="copy-btn" aria-label="Copiar chave de acesso" hidden>Copiar</button>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Seções da nota fiscal">
+        <button role="tab" id="tab-ide" aria-selected="true" aria-controls="panel-ide" class="tab-btn active">Identificação</button>
+        <button role="tab" id="tab-emit" aria-selected="false" aria-controls="panel-emit" class="tab-btn">Emitente</button>
+        <button role="tab" id="tab-dest" aria-selected="false" aria-controls="panel-dest" class="tab-btn">Destinatário</button>
+        <button role="tab" id="tab-itens" aria-selected="false" aria-controls="panel-itens" class="tab-btn">Itens</button>
+        <button role="tab" id="tab-totais" aria-selected="false" aria-controls="panel-totais" class="tab-btn">Totais</button>
+        <button role="tab" id="tab-alertas" aria-selected="false" aria-controls="panel-alertas" class="tab-btn">Alertas</button>
+      </div>
+
+      <div role="tabpanel" id="panel-ide" aria-labelledby="tab-ide" class="tab-panel active">
+        <dl class="data-grid" id="ideGrid"></dl>
+      </div>
+      <div role="tabpanel" id="panel-emit" aria-labelledby="tab-emit" class="tab-panel" hidden>
+        <dl class="data-grid" id="emitGrid"></dl>
+      </div>
+      <div role="tabpanel" id="panel-dest" aria-labelledby="tab-dest" class="tab-panel" hidden>
+        <dl class="data-grid" id="destGrid"></dl>
+      </div>
+      <div role="tabpanel" id="panel-itens" aria-labelledby="tab-itens" class="tab-panel" hidden>
+        <div class="table-wrapper">
+          <table id="itensTable" aria-label="Itens da nota fiscal">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Código</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">NCM</th>
+                <th scope="col">CFOP</th>
+                <th scope="col">Un.</th>
+                <th scope="col">Qtde</th>
+                <th scope="col">Vl. Unit.</th>
+                <th scope="col">Vl. Total</th>
+              </tr>
+            </thead>
+            <tbody id="itensBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div role="tabpanel" id="panel-totais" aria-labelledby="tab-totais" class="tab-panel" hidden>
+        <dl class="data-grid" id="totaisGrid"></dl>
+      </div>
+      <div role="tabpanel" id="panel-alertas" aria-labelledby="tab-alertas" class="tab-panel" hidden>
+        <ul class="alertas-lista" id="alertasLista" aria-label="Lista de alertas e divergências"></ul>
+        <p class="sem-alertas" id="semAlertas" hidden>Nenhum alerta ou divergência encontrado.</p>
+      </div>
+    </section>
+
+    <section class="error-state" id="errorState" hidden aria-live="assertive">
+      <h2>Erro ao processar o arquivo</h2>
+      <p id="errorMessage"></p>
+      <button type="button" id="tryAgainBtn" class="primary-btn">Tentar outro arquivo</button>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
