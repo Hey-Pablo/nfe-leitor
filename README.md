@@ -2,6 +2,8 @@
 
 > **Demonstração:** https://hey-pablo.github.io/nfe-leitor/
 
+> **Status: concluído.** Site publicado no GitHub Pages, 7 testes automatizados e CI.
+
 Página que lê o XML de uma NF-e (modelo 55), mostra a nota em formato legível e aponta problemas: chave de acesso inválida, CNPJ com dígito errado e totais que não batem com os itens. Tudo roda no navegador, e nenhum arquivo sai da máquina de quem usa.
 
 ![Leitor no desktop](docs/desktop.png)
