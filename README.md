@@ -4,9 +4,20 @@
 
 > **Status: concluído.** Site publicado no GitHub Pages, 7 testes automatizados e CI.
 
+![Demonstração do leitor de NF-e](docs/demo.gif)
+
 Página que lê o XML de uma NF-e (modelo 55), mostra a nota em formato legível e aponta problemas: chave de acesso inválida, CNPJ com dígito errado e totais que não batem com os itens. Tudo roda no navegador, e nenhum arquivo sai da máquina de quem usa.
 
-![Leitor no desktop](docs/desktop.png)
+## Telas
+
+### Desktop (1440×900) e Mobile (390×844)
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Inicial](docs/img/desktop-inicial.png) | ![Mobile Ide](docs/img/mobile-ide.png) |
+| Tela inicial com área de upload | Dados da identificação da NF-e |
+| ![Chave Inválida](docs/img/desktop-chave-invalida.png) | ![Mobile Itens](docs/img/mobile-itens.png) |
+| Selo mostrando chave inválida | Lista de itens da nota |
 
 ## Problema
 
