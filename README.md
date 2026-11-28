@@ -4,36 +4,20 @@
 
 > **Status: concluído.** Site publicado no GitHub Pages, 7 testes automatizados e CI.
 
-Página que lê o XML de uma NF-e (modelo 55), mostra a nota em formato legível e aponta problemas: chave de acesso inválida, CNPJ com dígito errado e totais que não batem com os itens. Tudo roda no navegador, e nenhum arquivo sai da máquina de quem usa.
-
-## Demonstração
-
 ![Demonstração do leitor de NF-e](docs/demo.gif)
+
+Página que lê o XML de uma NF-e (modelo 55), mostra a nota em formato legível e aponta problemas: chave de acesso inválida, CNPJ com dígito errado e totais que não batem com os itens. Tudo roda no navegador, e nenhum arquivo sai da máquina de quem usa.
 
 ## Telas
 
-### Desktop (1440×900)
+### Desktop (1440×900) e Mobile (390×844)
 
-| Tela | Descrição |
-|------|-----------|
-| ![Inicial](docs/img/desktop-inicial.png) | Tela inicial com área de upload |
-| ![Identificação](docs/img/desktop-ide.png) | Dados da identificação da NF-e |
-| ![Emitente](docs/img/desktop-emit.png) | Dados do emitente |
-| ![Destinatário](docs/img/desktop-dest.png) | Dados do destinatário |
-| ![Itens](docs/img/desktop-itens.png) | Lista de itens da nota |
-| ![Totais](docs/img/desktop-totais.png) | Totais da NF-e |
-| ![Alertas](docs/img/desktop-alertas.png) | Alertas sem divergências |
-| ![Alertas Divergente](docs/img/desktop-alertas-divergencia.png) | Alerta com divergência encontrada |
-| ![Chave Inválida](docs/img/desktop-chave-invalida.png) | Selo mostrando chave inválida |
-
-### Mobile (390×844)
-
-| Tela | Descrição |
-|------|-----------|
-| ![Mobile Inicial](docs/img/mobile-inicial.png) | Tela inicial responsiva |
-| ![Mobile Identificação](docs/img/mobile-ide.png) | Dados da identificação (mobile) |
-| ![Mobile Emitente](docs/img/mobile-emit.png) | Dados do emitente (mobile) |
-| ![Mobile Itens](docs/img/mobile-itens.png) | Lista de itens (mobile) |
+| Desktop | Mobile |
+|---------|--------|
+| ![Inicial](docs/img/desktop-inicial.png) | ![Mobile Ide](docs/img/mobile-ide.png) |
+| Tela inicial com área de upload | Dados da identificação da NF-e |
+| ![Chave Inválida](docs/img/desktop-chave-invalida.png) | ![Mobile Itens](docs/img/mobile-itens.png) |
+| Selo mostrando chave inválida | Lista de itens da nota |
 
 ## Problema
 
